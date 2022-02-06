@@ -14,8 +14,7 @@ function App() {
   const [correctLetters,setCorrectLetters]=useState([])
   const [wrongLetters,setWrongLetters]=useState([])
   const [notification,setNotification]=useState('')
-  const [modalHeight,setModalHeight]=useState(0)
- 
+  
   const { observe,unobserve, width, height } = useDimensions({
     onResize: ({ observe }) => {
       unobserve(); // To stop observing the current target element
