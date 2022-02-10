@@ -7,6 +7,8 @@ import { Notification } from './components/Notification';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import {randomWord,abc} from './data'
 import useDimensions from "react-cool-dimensions";
+import {WrongLetters} from './components/WrongLetters'
+import {Popup} from './components/Popup'
 
 
 function App() {
@@ -14,6 +16,10 @@ function App() {
   const [correctLetters,setCorrectLetters]=useState([])
   const [wrongLetters,setWrongLetters]=useState([])
   const [notification,setNotification]=useState('')
+  const [playable,setPlayable]=useState(true)
+
+  
+  console.log(selectedWord)
   
   const { observe,unobserve, width, height } = useDimensions({
     onResize: ({ observe }) => {
@@ -24,20 +30,26 @@ function App() {
   useEffect(() => {observe()},[])
 
   return (
-    <div className="container-md p-2" ref={observe}>
-      <h1 className="text-center">Akasztófa</h1>
-      <h3 className="text-center p-2">Találd meg az elrejtett szót, adj meg egy betűt! {selectedWord}</h3>
+    <div className="container-md p-2 " ref={observe}>
+      <h1 className="text-center p-2">Akasztófa</h1>
+      <h3 className="text-center p-2">Találd meg az elrejtett szót, adj meg egy betűt! </h3>
       <div className="row text-center">
           <div className="col ">
-              <Figure />
+              <Figure wrongLetters={wrongLetters}/>
           </div>
           <div className="col">
-            <Word selectedWord={selectedWord} correctLetters={correctLetters} setCorrectLetters={setCorrectLetters} abc={abc} setNotification={setNotification}/>
+            {wrongLetters.length>0 && <WrongLetters wrongLetters={wrongLetters}/>}
+            <Word selectedWord={selectedWord} abc={abc} 
+              correctLetters={correctLetters} setCorrectLetters={setCorrectLetters} 
+              setNotification={setNotification}
+              wrongLetters={wrongLetters} setWrongLetters={setWrongLetters}
+              playable={playable} setPlayable={setPlayable}
+             />
           </div>
       </div>
      {notification && <Notification notification={notification} setNotification={setNotification} height={height} width={width}/>}
-
-     Hi! My width is {width}px and height is {height}px
+    {!playable && <Popup setPlayable={setPlayable} setCorrectLetters={setCorrectLetters} setWrongLetters={setWrongLetters} setSelectedWord={setSelectedWord}/>}
+    {/* Hi! My width is {width}px and height is {height}px*/}
     </div>
   );
 }

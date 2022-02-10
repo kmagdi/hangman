@@ -11,8 +11,8 @@ export const Notification=({notification,setNotification,width,height})=> {
     //console.log('notif',width,height)
 
     const notificationStyle={
-            maxWidth:'50%',
-            height: '4rem',
+            maxWidth:'200px',
+            height: '5rem',
             margin:'0 auto',
             padding:'1rem',
             border:'1px solid white',

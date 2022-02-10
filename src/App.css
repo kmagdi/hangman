@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
 .container-md {
   background-color: #34495e;
   color: #fff;
-
+  border-radius:10px;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0,0.5);
+  font-family: 'Quicksand', sans-serif;
 }
 .figure-container{
   width:200px;
@@ -22,7 +26,7 @@
   align-items: flex-end;
 }
 /*modal*/
-
+/*
 .notification{
   max-width:50%;
   height: 3rem;
@@ -31,4 +35,4 @@
   border:1px solid white;
   border-radius:10px;
   background-color:rgb(109, 109, 221);
-}
+}*/
